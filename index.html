@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH1527 - Disaster Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Disaster Management System</h1>
+        <p id="location-display">Locating you...</p>
+    </header>
+
+    <main>
+        <section class="sos-box">
+            <button id="sos-btn">SEND SOS</button>
+            <p>Click for emergency assistance</p>
+        </section>
+
+        <section class="report-form">
+            <h2>Report a Disaster</h2>
+            <form id="disaster-form">
+                <select id="disaster-type" required>
+                    <option value="">Select Disaster Type</option>
+                    <option value="Flood">Flood</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Earthquake">Earthquake</option>
+                </select>
+                <textarea id="description" placeholder="Describe the situation..." required></textarea>
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+
+        <section class="alerts">
+            <h2>Live Alerts</h2>
+            <div id="alert-list">
+                </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

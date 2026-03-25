@@ -1,0 +1,13 @@
+body { font-family: sans-serif; background: #f4f4f4; text-align: center; margin: 0; }
+header { background: #333; color: white; padding: 1rem; }
+
+.sos-box { margin: 20px; }
+#sos-btn { 
+    background: red; color: white; border: none; 
+    padding: 30px 60px; font-size: 24px; font-weight: bold; 
+    border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(255,0,0,0.5);
+}
+
+.report-form { background: white; width: 80%; margin: auto; padding: 20px; border-radius: 8px; }
+input, select, textarea { width: 100%; margin: 10px 0; padding: 10px; }
+button[type="submit"] { background: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; }
