@@ -9,7 +9,70 @@
 <body>
     <header>
         <h1>Disaster Management System</h1>
+        <p id="location-display">Locating you<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH1527 - Disaster Management</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* 2. ADDED: Simple style to ensure the map is visible */
+        #map { 
+            height: 350px; 
+            width: 100%; 
+            border-radius: 12px; 
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .map-section { padding: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Disaster Management System</h1>
         <p id="location-display">Locating you...</p>
+    </header>
+
+    <main>
+        <section class="sos-box">
+            <button id="sos-btn">SEND SOS</button>
+            <p>Click for emergency assistance</p>
+        </section>
+
+        <section class="map-section">
+            <h2>Disaster Impact Map</h2>
+            <div id="map"></div>
+        </section>
+
+        <section class="report-form">
+            <h2>Report a Disaster</h2>
+            <form id="disaster-form">
+                <select id="disaster-type" required>
+                    <option value="">Select Disaster Type</option>
+                    <option value="Flood">Flood</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Earthquake">Earthquake</option>
+                </select>
+                <textarea id="description" placeholder="Describe the situation..." required></textarea>
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+
+        <section class="alerts">
+            <h2>Live Alerts</h2>
+            <div id="alert-list"></div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>...</p>
     </header>
 
     <main>
