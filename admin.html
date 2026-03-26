@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Disaster Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table { width: 95%; margin: 20px auto; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #333; color: white; }
+        .btn-delete { background: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .status-pending { color: orange; font-weight: bold; }
+        .status-resolved { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Control Center</h1>
+        <p>Manage Live Disaster Reports & SOS Signals</p>
+    </header>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                    <th>Location (Lat, Lon)</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="admin-table-body">
+                </tbody>
+        </table>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script>
+        // PASTE YOUR FIREBASE CONFIG HERE (Same as script.js)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Load Data into Table
+        database.ref('reports').on('value', (snapshot) => {
+            const data = snapshot.val();
+            const tableBody = document.getElementById('admin-table-body');
+            tableBody.innerHTML = "";
+
+            for (let id in data) {
+                const r = data[id];
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${r.type}</td>
+                        <td>${r.desc}</td>
+                        <td>${r.time}</td>
+                        <td>${r.lat.toFixed(4)}, ${r.lon.toFixed(4)}</td>
+                        <td class="status-${r.status.toLowerCase()}">${r.status}</td>
+                        <td>
+                            <button class="btn-delete" onclick="deleteReport('${id}')">Delete Fake</button>
+                        </td>
+                    </tr>
+                `;
+            }
+        });
+
+        function deleteReport(id) {
+            if(confirm("Delete this report?")) {
+                database.ref('reports/' + id).remove();
+            }
+        }
+    </script>
+</body>
+</html>
